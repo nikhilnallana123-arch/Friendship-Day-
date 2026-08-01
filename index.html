@@ -98,31 +98,68 @@
             border: 1px solid #e9d5ff;
         }
 
-        /* Flip Grid */
+        /* Flip Grid Style */
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 8px;
         }
 
-        .mini-card {
+        .flip-card {
             background: #faf5ff;
             border: 1px solid #d8b4fe;
             border-radius: 8px;
-            padding: 12px;
-            font-size: 0.75rem;
-            color: #4b5563;
             min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             cursor: pointer;
-            transition: 0.2s;
+            perspective: 1000px;
+            position: relative;
         }
 
-        .mini-card:hover {
-            background: #f3eafa;
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            padding: 5px;
+            border-radius: 8px;
+        }
+
+        .flip-front {
+            background: #7c3aed;
+            color: white;
+            font-weight: bold;
+        }
+
+        .flip-back {
+            background: #ffffff;
+            color: #4b5563;
+            transform: rotateY(180deg);
+            border: 1px dashed #7c3aed;
         }
 
         /* Music Bar */
@@ -206,12 +243,32 @@
 
         <div id="screen-3" class="screen">
             <h1>The Memory Wall</h1>
-            <p>Tap to flip through</p>
+            <p>Tap to flip each card</p>
             <div class="grid-4">
-                <div class="mini-card" onclick="alert('JYOOO is my favourite person in the world!')">my favourite person in the world</div>
-                <div class="mini-card" onclick="alert('You are more than a friend to me!')">you are more than a friend to me</div>
-                <div class="mini-card" onclick="alert('I love you too much!')">i love you too much</div>
-                <div class="mini-card" onclick="alert('You are my safe place!')">you are my shoulders to cry</div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">Tap to Flip 🌸</div>
+                        <div class="flip-back">my favourite person in the world</div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">Tap to Flip 🌸</div>
+                        <div class="flip-back">you are more than a friend to me</div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">Tap to Flip 🌸</div>
+                        <div class="flip-back">i love you too much</div>
+                    </div>
+                </div>
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">Tap to Flip 🌸</div>
+                        <div class="flip-back">you are my safe place</div>
+                    </div>
+                </div>
             </div>
             <button class="btn" onclick="nextScreen(4)">Read Final Letter →</button>
         </div>
@@ -238,8 +295,11 @@
             var music = document.getElementById('bg-music');
             var btn = document.getElementById('play-btn');
             if (music.paused) {
-                music.play();
-                btn.innerText = "Pause ⏸️";
+                music.play().then(() => {
+                    btn.innerText = "Pause ⏸️";
+                }).catch(e => {
+                    alert("Please upload a 'song.mp3' file in your GitHub repository for music to play!");
+                });
             } else {
                 music.pause();
                 btn.innerText = "Play Music 🎶";
