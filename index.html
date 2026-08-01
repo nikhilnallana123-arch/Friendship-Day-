@@ -202,17 +202,20 @@
 </head>
 <body>
 
+    <!-- Hidden Audio Element -->
     <audio id="bg-music" loop>
         <source src="Song.mp3" type="audio/mpeg">
     </audio>
 
     <div class="phone-frame">
         
+        <!-- Music Bar with 'Perfect' label -->
         <div class="music-player">
-            <span>🎵 Our Special Song</span>
+            <span>🎵 Perfect</span>
             <button class="music-btn" id="play-btn" onclick="toggleMusic()">Play Music 🎶</button>
         </div>
 
+        <!-- Screen 1: Envelope Intro -->
         <div id="screen-1" class="screen active">
             <h1>Happy Friendship Day</h1>
             <p>A delivery for you...</p>
@@ -223,6 +226,7 @@
             </div>
         </div>
 
+        <!-- Screen 2: Photos & Intro -->
         <div id="screen-2" class="screen">
             <h1>To My Favourite Person</h1>
             <p>JYOOO 🎀</p>
@@ -235,6 +239,7 @@
             <button class="btn" onclick="nextScreen(3)">See Memory Wall →</button>
         </div>
 
+        <!-- Screen 3: Memory Wall with 🎀 emoji -->
         <div id="screen-3" class="screen">
             <h1>The Memory Wall</h1>
             <p>Tap each card to reveal</p>
@@ -253,5 +258,46 @@
                 </div>
                 <div class="flip-card" onclick="this.classList.toggle('flipped')">
                     <div class="flip-front">Tap to Flip 🎀</div>
-                    <div
-                        
+                    <div class="flip-back">you are my safe place</div>
+                </div>
+            </div>
+            <button class="btn" onclick="nextScreen(4)">Read Final Letter →</button>
+        </div>
+
+        <!-- Screen 4: Final Letter -->
+        <div id="screen-4" class="screen">
+            <h1>A Note For You</h1>
+            <div class="note-content">
+                <p>Hey JYOOO, I'm not great at saying this out loud, so I made you a page instead — our photos, and a few things I actually mean.</p>
+                <p style="margin-top: 10px;">Thank you for everything. Happy Friendship Day!</p>
+                <div class="signature">Forever Yours, Nikhil ❤️</div>
+            </div>
+            <button class="btn" onclick="nextScreen(1)">↺ Start Over</button>
+        </div>
+
+    </div>
+
+    <script>
+        function nextScreen(num) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-' + num).classList.add('active');
+        }
+
+        function toggleMusic() {
+            var music = document.getElementById('bg-music');
+            var btn = document.getElementById('play-btn');
+            if (music.paused) {
+                music.play().then(() => {
+                    btn.innerText = "Pause ⏸️";
+                }).catch(e => {
+                    alert("Song play avvadamledu, file format check cheyandi!");
+                });
+            } else {
+                music.pause();
+                btn.innerText = "Play Music 🎶";
+            }
+        }
+    </script>
+
+</body>
+</html>
