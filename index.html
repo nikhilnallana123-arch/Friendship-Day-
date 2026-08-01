@@ -115,51 +115,45 @@
             justify-content: center;
             text-align: center;
             cursor: pointer;
-            perspective: 1000px;
             position: relative;
-        }
-
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .flip-card.flipped .flip-card-inner {
-            transform: rotateY(180deg);
         }
 
         .flip-front, .flip-back {
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.75rem;
-            padding: 5px;
+            padding: 8px;
             border-radius: 8px;
+            transition: opacity 0.3s ease;
         }
 
         .flip-front {
             background: #7c3aed;
             color: white;
             font-weight: bold;
+            z-index: 2;
         }
 
         .flip-back {
             background: #ffffff;
             color: #4b5563;
-            transform: rotateY(180deg);
             border: 1px dashed #7c3aed;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .flip-card.flipped .flip-front {
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .flip-card.flipped .flip-back {
+            opacity: 1;
+            z-index: 2;
         }
 
         /* Music Bar */
@@ -243,31 +237,23 @@
 
         <div id="screen-3" class="screen">
             <h1>The Memory Wall</h1>
-            <p>Tap to flip each card</p>
+            <p>Tap each card to reveal</p>
             <div class="grid-4">
                 <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-front">Tap to Flip 🌸</div>
-                        <div class="flip-back">my favourite person in the world</div>
-                    </div>
+                    <div class="flip-front">Tap to Flip ✨</div>
+                    <div class="flip-back">my favourite person in the world</div>
                 </div>
                 <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-front">Tap to Flip 🌸</div>
-                        <div class="flip-back">you are more than a friend to me</div>
-                    </div>
+                    <div class="flip-front">Tap to Flip ✨</div>
+                    <div class="flip-back">you are more than a friend to me</div>
                 </div>
                 <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-front">Tap to Flip 🌸</div>
-                        <div class="flip-back">i love you too much</div>
-                    </div>
+                    <div class="flip-front">Tap to Flip ✨</div>
+                    <div class="flip-back">i love you too much</div>
                 </div>
                 <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-card-inner">
-                        <div class="flip-front">Tap to Flip 🌸</div>
-                        <div class="flip-back">you are my safe place</div>
-                    </div>
+                    <div class="flip-front">Tap to Flip ✨</div>
+                    <div class="flip-back">you are my safe place</div>
                 </div>
             </div>
             <button class="btn" onclick="nextScreen(4)">Read Final Letter →</button>
@@ -286,9 +272,9 @@
     </div>
 
     <script>
-        function nextScreen(screenNumber) {
+        function nextScreen(num) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('screen-' + screenNumber).classList.add('active');
+            document.getElementById('screen-' + num).classList.add('active');
         }
 
         function toggleMusic() {
@@ -298,7 +284,7 @@
                 music.play().then(() => {
                     btn.innerText = "Pause ⏸️";
                 }).catch(e => {
-                    alert("Please upload a 'song.mp3' file in your GitHub repository for music to play!");
+                    alert("Please upload a 'song.mp3' file in your GitHub repository!");
                 });
             } else {
                 music.pause();
