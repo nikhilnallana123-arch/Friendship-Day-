@@ -129,7 +129,7 @@
         .music-player {
             background: #f3eafa;
             border-radius: 30px;
-            padding: 8px 15px;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -137,7 +137,16 @@
             font-size: 0.8rem;
             font-weight: bold;
             color: #581c87;
-            margin-bottom: 10px;
+        }
+
+        .music-btn {
+            background: #7c3aed;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.75rem;
         }
 
         /* Note Section */
@@ -162,15 +171,17 @@
 </head>
 <body>
 
+    <audio id="bg-music" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="phone-frame">
         
-        <!-- Music Bar -->
         <div class="music-player">
-            <span>🎵 Our Song</span>
-            <span>▶️ Playing</span>
+            <span>🎵 Our Special Song</span>
+            <button class="music-btn" id="play-btn" onclick="toggleMusic()">Play Music 🎶</button>
         </div>
 
-        <!-- Screen 1: Envelope Intro -->
         <div id="screen-1" class="screen active">
             <h1>Happy Friendship Day</h1>
             <p>A delivery for you...</p>
@@ -181,7 +192,6 @@
             </div>
         </div>
 
-        <!-- Screen 2: Photos & Intro -->
         <div id="screen-2" class="screen">
             <h1>To My Favourite Person</h1>
             <p>JYOOO 🎀</p>
@@ -194,7 +204,6 @@
             <button class="btn" onclick="nextScreen(3)">See Memory Wall →</button>
         </div>
 
-        <!-- Screen 3: Memory Wall -->
         <div id="screen-3" class="screen">
             <h1>The Memory Wall</h1>
             <p>Tap to flip through</p>
@@ -207,7 +216,6 @@
             <button class="btn" onclick="nextScreen(4)">Read Final Letter →</button>
         </div>
 
-        <!-- Screen 4: Final Letter -->
         <div id="screen-4" class="screen">
             <h1>A Note For You</h1>
             <div class="note-content">
@@ -223,11 +231,19 @@
     <script>
         function nextScreen(screenNumber) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('screen-2').style.display = 'none';
-            document.getElementById('screen-3').style.display = 'none';
-            document.getElementById('screen-4').style.display = 'none';
-            
             document.getElementById('screen-' + screenNumber).classList.add('active');
+        }
+
+        function toggleMusic() {
+            var music = document.getElementById('bg-music');
+            var btn = document.getElementById('play-btn');
+            if (music.paused) {
+                music.play();
+                btn.innerText = "Pause ⏸️";
+            } else {
+                music.pause();
+                btn.innerText = "Play Music 🎶";
+            }
         }
     </script>
 
