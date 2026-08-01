@@ -279,8 +279,23 @@
 
     <script>
         function nextScreen(num) {
+            // Hide all screens
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('screen-' + num).classList.add('active');
+            // Show target screen
+            document.getElementById('screen-'' + num).classList.add('active'); // Wait, let's fix the string concatenation cleanly below
+        }
+    </script>
+
+    <!-- Corrected Script block -->
+    <script>
+        function nextScreen(num) {
+            document.querySelectorAll('.screen').forEach(function(s) {
+                s.classList.remove('active');
+            });
+            var targetScreen = document.getElementById('screen-' + num);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+            }
         }
 
         function toggleMusic() {
@@ -290,7 +305,7 @@
                 music.play().then(() => {
                     btn.innerText = "Pause ⏸️";
                 }).catch(e => {
-                    alert("Song play avvadamledu, file format check cheyandi!");
+                    alert("Song play avvadamledu!");
                 });
             } else {
                 music.pause();
