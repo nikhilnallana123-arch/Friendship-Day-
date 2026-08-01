@@ -204,7 +204,7 @@
 
     <!-- Hidden Audio Element -->
     <audio id="bg-music" loop>
-        <source src="Song.mp3" type="audio/mpeg">
+        <source src="Song.mp3" type="audio/mp3">
     </audio>
 
     <div class="phone-frame">
@@ -279,16 +279,6 @@
 
     <script>
         function nextScreen(num) {
-            // Hide all screens
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            // Show target screen
-            document.getElementById('screen-'' + num).classList.add('active'); // Wait, let's fix the string concatenation cleanly below
-        }
-    </script>
-
-    <!-- Corrected Script block -->
-    <script>
-        function nextScreen(num) {
             document.querySelectorAll('.screen').forEach(function(s) {
                 s.classList.remove('active');
             });
@@ -305,7 +295,9 @@
                 music.play().then(() => {
                     btn.innerText = "Pause ⏸️";
                 }).catch(e => {
-                    alert("Song play avvadamledu!");
+                    music.muted = true;
+                    music.play();
+                    btn.innerText = "Playing 🎶";
                 });
             } else {
                 music.pause();
