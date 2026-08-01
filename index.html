@@ -202,9 +202,9 @@
 </head>
 <body>
 
-    <!-- Hidden Audio Element -->
-    <audio id="bg-music" loop>
-        <source src="song.mp3" type="audio/mp3">
+    <!-- Audio Element -->
+    <audio id="bg-music" preload="auto">
+        <source src="song.mp3" type="audio/mpeg">
     </audio>
 
     <div class="phone-frame">
@@ -264,7 +264,7 @@
             <button class="btn" onclick="nextScreen(4)">Read Final Letter →</button>
         </div>
 
-        <!-- Screen 4: Final Letter with Cute Message -->
+        <!-- Screen 4: Final Letter (Telugu style English text) -->
         <div id="screen-4" class="screen">
             <h1>A Note For You</h1>
             <div class="note-content">
@@ -290,13 +290,13 @@
         function toggleMusic() {
             var music = document.getElementById('bg-music');
             var btn = document.getElementById('play-btn');
+            
             if (music.paused) {
                 music.play().then(() => {
                     btn.innerText = "Pause ⏸️";
-                }).catch(e => {
-                    music.muted = true;
-                    music.play();
-                    btn.innerText = "Playing 🎶";
+                }).catch((error) => {
+                    console.log(error);
+                    alert("Audio play avvadamledu, file name 'song.mp3' ani small letters lo undha leda chudandi!");
                 });
             } else {
                 music.pause();
