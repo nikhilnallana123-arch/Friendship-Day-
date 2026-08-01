@@ -203,7 +203,7 @@
 <body>
 
     <audio id="bg-music" loop>
-        <source src="song.mp3" type="audio/mpeg">
+        <source src="Song.mp3" type="audio/mpeg">
     </audio>
 
     <div class="phone-frame">
@@ -240,58 +240,18 @@
             <p>Tap each card to reveal</p>
             <div class="grid-4">
                 <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-front">Tap to Flip ✨</div>
+                    <div class="flip-front">Tap to Flip 🎀</div>
                     <div class="flip-back">my favourite person in the world</div>
                 </div>
                 <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-front">Tap to Flip ✨</div>
+                    <div class="flip-front">Tap to Flip 🎀</div>
                     <div class="flip-back">you are more than a friend to me</div>
                 </div>
                 <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-front">Tap to Flip ✨</div>
+                    <div class="flip-front">Tap to Flip 🎀</div>
                     <div class="flip-back">i love you too much</div>
                 </div>
                 <div class="flip-card" onclick="this.classList.toggle('flipped')">
-                    <div class="flip-front">Tap to Flip ✨</div>
-                    <div class="flip-back">you are my safe place</div>
-                </div>
-            </div>
-            <button class="btn" onclick="nextScreen(4)">Read Final Letter →</button>
-        </div>
-
-        <div id="screen-4" class="screen">
-            <h1>A Note For You</h1>
-            <div class="note-content">
-                <p>Hey JYOOO, I'm not great at saying this out loud, so I made you a page instead — our photos, and a few things I actually mean.</p>
-                <p style="margin-top: 10px;">Thank you for everything. Happy Friendship Day!</p>
-                <div class="signature">Forever Yours, Nikhil ❤️</div>
-            </div>
-            <button class="btn" onclick="nextScreen(1)">↺ Start Over</button>
-        </div>
-
-    </div>
-
-    <script>
-        function nextScreen(num) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('screen-' + num).classList.add('active');
-        }
-
-        function toggleMusic() {
-            var music = document.getElementById('bg-music');
-            var btn = document.getElementById('play-btn');
-            if (music.paused) {
-                music.play().then(() => {
-                    btn.innerText = "Pause ⏸️";
-                }).catch(e => {
-                    alert("Please upload a 'song.mp3' file in your GitHub repository!");
-                });
-            } else {
-                music.pause();
-                btn.innerText = "Play Music 🎶";
-            }
-        }
-    </script>
-
-</body>
-</html>
+                    <div class="flip-front">Tap to Flip 🎀</div>
+                    <div
+                        
