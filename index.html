@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -36,58 +36,51 @@
             gap: 20px;
         }
 
-        .header {
+        .screen {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
             text-align: center;
         }
 
-        .header h1 {
+        .screen.active {
+            display: flex;
+        }
+
+        h1 {
             font-size: 1.5rem;
             color: #6b21a8;
             margin-bottom: 5px;
         }
 
-        .header p {
-            font-size: 0.85rem;
-            color: #7c3aed;
-            font-weight: 500;
-        }
-
-        /* Music Player */
-        .music-player {
-            background: #f3eafa;
-            border-radius: 30px;
-            padding: 10px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #d8b4fe;
-        }
-
-        .music-info {
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: #581c87;
-        }
-
-        /* Section Box Style */
-        .section-box {
-            background: #faf5ff;
-            border: 1px solid #e9d5ff;
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .section-box h3 {
-            color: #581c87;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        .section-box p {
+        p {
             font-size: 0.85rem;
             color: #6b7280;
-            margin-bottom: 12px;
+        }
+
+        /* Envelope Screen */
+        .envelope-container {
+            background: #faf5ff;
+            border: 2px solid #e9d5ff;
+            border-radius: 15px;
+            padding: 30px 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .envelope-container:hover {
+            background: #f3eafa;
+        }
+
+        .btn {
+            background: #7c3aed;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
         }
 
         /* Gallery Grid */
@@ -105,7 +98,7 @@
             border: 1px solid #e9d5ff;
         }
 
-        /* Memory Wall / Flip Grid Style */
+        /* Flip Grid */
         .grid-4 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -113,33 +106,38 @@
         }
 
         .mini-card {
-            background: #ffffff;
+            background: #faf5ff;
             border: 1px solid #d8b4fe;
             border-radius: 8px;
-            padding: 10px;
+            padding: 12px;
             font-size: 0.75rem;
             color: #4b5563;
-            min-height: 70px;
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
-        /* Scratch / Truths Box */
-        .truth-item {
-            background: #ffffff;
+        .mini-card:hover {
+            background: #f3eafa;
+        }
+
+        /* Music Bar */
+        .music-player {
+            background: #f3eafa;
+            border-radius: 30px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             border: 1px solid #d8b4fe;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 8px;
-            text-align: left;
             font-size: 0.8rem;
-        }
-
-        .truth-item span {
-            color: #7c3aed;
             font-weight: bold;
+            color: #581c87;
+            margin-bottom: 10px;
         }
 
         /* Note Section */
@@ -148,6 +146,10 @@
             font-size: 0.85rem;
             line-height: 1.5;
             color: #4b5563;
+            background: #faf5ff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #e9d5ff;
         }
 
         .signature {
@@ -161,65 +163,73 @@
 <body>
 
     <div class="phone-frame">
-        <!-- Top Header -->
-        <div class="header">
-            <h1>Happy Friendship Day</h1>
-            <p>My Forever Favorite ✨ Nikhil & JYOOO 🎀</p>
-        </div>
-
+        
         <!-- Music Bar -->
         <div class="music-player">
-            <div class="music-info">🎵 Our Special Connection</div>
-            <span style="font-size: 1.1rem;">⏸️</span>
+            <span>🎵 Our Song</span>
+            <span>▶️ Playing</span>
         </div>
 
-        <!-- Envelope Section -->
-        <div class="section-box">
-            <h3>💌 Hey JYOOO!</h3>
-            <p>I made this tiny corner of the internet only for you, because you're my absolute favorite person.</p>
+        <!-- Screen 1: Envelope Intro -->
+        <div id="screen-1" class="screen active">
+            <h1>Happy Friendship Day</h1>
+            <p>A delivery for you...</p>
+            <div class="envelope-container" onclick="nextScreen(2)">
+                <h3>💌 Hey You!</h3>
+                <p>I made something just for you...</p>
+                <button class="btn">Tap to Open</button>
+            </div>
         </div>
 
-        <!-- Photo Memories Section -->
-        <div class="section-box">
-            <h3>✨ Our Cute Memories</h3>
+        <!-- Screen 2: Photos & Intro -->
+        <div id="screen-2" class="screen">
+            <h1>To My Favourite Person</h1>
+            <p>JYOOO 🎀</p>
             <div class="gallery">
                 <div class="card"><img src="IMG-20260605-WA0013.jpg" alt="Memory"></div>
                 <div class="card"><img src="IMG-20260605-WA0014.jpg" alt="Memory"></div>
                 <div class="card"><img src="IMG-20260605-WA0020.jpg" alt="Memory"></div>
                 <div class="card"><img src="IMG-20260605-WA0021.jpg" alt="Memory"></div>
             </div>
+            <button class="btn" onclick="nextScreen(3)">See Memory Wall →</button>
         </div>
 
-        <!-- Memory Wall / Flip Notes -->
-        <div class="section-box">
-            <h3>🧸 The Memory Wall</h3>
+        <!-- Screen 3: Memory Wall -->
+        <div id="screen-3" class="screen">
+            <h1>The Memory Wall</h1>
+            <p>Tap to flip through</p>
             <div class="grid-4">
-                <div class="mini-card">JYOOO is my favorite person in the world</div>
-                <div class="mini-card">you mean everything to me</div>
-                <div class="mini-card">i love you so much</div>
-                <div class="mini-card">my safe place forever</div>
+                <div class="mini-card" onclick="alert('JYOOO is my favourite person in the world!')">my favourite person in the world</div>
+                <div class="mini-card" onclick="alert('You are more than a friend to me!')">you are more than a friend to me</div>
+                <div class="mini-card" onclick="alert('I love you too much!')">i love you too much</div>
+                <div class="mini-card" onclick="alert('You are my safe place!')">you are my shoulders to cry</div>
             </div>
+            <button class="btn" onclick="nextScreen(4)">Read Final Letter →</button>
         </div>
 
-        <!-- Six Little Truths -->
-        <div class="section-box" style="text-align: left;">
-            <h3 style="text-align: center;">Six Little Truths</h3>
-            <div class="truth-item"><span>01.</span> You always understand me without words.</div>
-            <div class="truth-item"><span>02.</span> Your smile makes my entire day brighter.</div>
-            <div class="truth-item"><span>03.</span> You are stuck with Nikhil forever, no escape!</div>
-            <div class="truth-item"><span>04.</span> You handle all my silly moods so well.</div>
-        </div>
-
-        <!-- Final Letter -->
-        <div class="section-box" style="text-align: left;">
-            <h3 style="text-align: center;">📝 A Note For You</h3>
+        <!-- Screen 4: Final Letter -->
+        <div id="screen-4" class="screen">
+            <h1>A Note For You</h1>
             <div class="note-content">
-                <p>Hey JYOOO, I'm not always great at expressing my feelings out loud, so I built this special page for you — our photos, memories, and my true feelings.</p>
-                <p style="margin-top: 8px;">Thank you for coming into my life and staying by my side through everything. Happy Friendship Day!</p>
-                <div class="signature">Forever Yours, Nikhil ❤️ JYOOO 🎀</div>
+                <p>Hey JYOOO, I'm not great at saying this out loud, so I made you a page instead — our photos, and a few things I actually mean.</p>
+                <p style="margin-top: 10px;">Thank you for everything. Happy Friendship Day!</p>
+                <div class="signature">Forever Yours, Nikhil ❤️</div>
             </div>
+            <button class="btn" onclick="nextScreen(1)">↺ Start Over</button>
         </div>
+
     </div>
+
+    <script>
+        function nextScreen(screenNumber) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-2').style.display = 'none';
+            document.getElementById('screen-3').style.display = 'none';
+            document.getElementById('screen-4').style.display = 'none';
+            
+            document.getElementById('screen-' + screenNumber).classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
